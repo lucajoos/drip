@@ -8,6 +8,7 @@
 #include "logger.h"
 #include "schedules.h"
 #include "secrets.h"
+#include "status_led.h"
 #include "time_service.h"
 #include "weather.h"
 #include "zones.h"
@@ -35,6 +36,7 @@ void setup() {
   Serial.println(F("drip startet..."));
 
   LittleFS.begin();
+  StatusLed::begin();
   connectWifi();
   TimeService::begin();
   Logger::begin();
@@ -49,6 +51,7 @@ void loop() {
   Zones::loop();
   Schedules::loop();
   TimeService::loop();
+  StatusLed::loop();
 
   static bool wasConnected = false;
   if (WiFi.status() == WL_CONNECTED && !wasConnected) {

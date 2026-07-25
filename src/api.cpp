@@ -85,6 +85,7 @@ void handleStatus() {
     if (st.active) {
       obj["cause"] = st.cause;
       obj["remainingS"] = Zones::remainingS(z);
+      obj["durationS"] = st.durationS;
     }
     isoOrNull(obj, "lastRunEnd", st.lastRunEnd);
     if (st.lastRunEnd > 0) obj["lastRunDurationS"] = st.lastRunDurationS;

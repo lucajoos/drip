@@ -7,6 +7,7 @@
 #define PIN_RELAY_BEDS D2  // GPIO4, Zone Beete
 #define PIN_I2C_SDA D6     // GPIO12, DS3231 SDA
 #define PIN_I2C_SCL D5     // GPIO14, DS3231 SCL
+#define PIN_STATUS_LED LED_BUILTIN // GPIO2/D4, onboard-LED (active low)
 
 // --- Netzwerk ---
 #define HOSTNAME "drip" // erreichbar als drip.local

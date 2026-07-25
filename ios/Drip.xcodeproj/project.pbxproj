@@ -1,0 +1,580 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		05A5A52E426DCC53A0226186 /* DripClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7919B27FC41F363D0E958B /* DripClient.swift */; };
+		0F4C2481042FA65DEFB69EF8 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB05EE693AD474FBB293224 /* RootView.swift */; };
+		1A395467C651A5601A4DFBAD /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502613423C5AD1B5651DF612 /* Models.swift */; };
+		21773D56972F9EA0593ED31C /* SchedulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68E3FA62AF89C9C835F6282 /* SchedulesView.swift */; };
+		2A770CC11B995F97C0CA9CA4 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB60B3275F479EC1481D856 /* AppConfig.swift */; };
+		2B848B659BAF42BB88E252AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F65D5117D6642A229F924449 /* Assets.xcassets */; };
+		307F4DBFFDDF99109F44F04E /* WateringAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02538880EAE255122FA2420 /* WateringAttributes.swift */; };
+		31319A47720DD848AE3BF845 /* WaterSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1D296228079FC453E1623B /* WaterSheet.swift */; };
+		3B8D61C58E67036F8F2EB0BB /* DripWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22BA2A03D77E0480F71C60 /* DripWidget.swift */; };
+		4C235EE9E4AB49BE42198832 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2338BC1F58B8B34D745CC542 /* EventRow.swift */; };
+		59C019537068E57BB27BE024 /* ConnectionBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B395B12A22FE2708DEF105 /* ConnectionBadge.swift */; };
+		6B0B78303D9EA6A05C5F7565 /* ZoneCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0289AD2C0614ACF35F78A864 /* ZoneCard.swift */; };
+		6B867FF4FEC19743FD1AD893 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D79849076ABDC8F4FA53F6B /* Keychain.swift */; };
+		778C9BB4216A730C74913C5D /* DripApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB615FE92967270FB282EC8F /* DripApp.swift */; };
+		806D90854DC4B431D133E33E /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9A91087D07C532BC46E123 /* LogsView.swift */; };
+		89AAF313432D0175B2E46AD5 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D79849076ABDC8F4FA53F6B /* Keychain.swift */; };
+		89DB9DD11A154520319E2F62 /* RefreshManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F269E5A0EA1F76A2093EED3A /* RefreshManager.swift */; };
+		8E00D5E444D8653C0C67DA9C /* WeatherCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA0403FAF60B98F22E7F28C /* WeatherCard.swift */; };
+		8E7603357BF87FB18AB4CAA3 /* WateringAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02538880EAE255122FA2420 /* WateringAttributes.swift */; };
+		91F2410298910E794C00D05B /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB60B3275F479EC1481D856 /* AppConfig.swift */; };
+		B6AC218DBA09D1A456F886CF /* ScheduleEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C508D070B1FE1D2E104BB2 /* ScheduleEditor.swift */; };
+		B6E041D455EB4A2ADFBD7F4D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B094CDD0719F19B4E8D14 /* SettingsView.swift */; };
+		B8B8819F1321A259E23ABDFD /* CountdownRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5510D22C7F281E7CA10F4D10 /* CountdownRing.swift */; };
+		C288FA1296A786D0AEEA4538 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502613423C5AD1B5651DF612 /* Models.swift */; };
+		C729E6D2A28D20521E82806F /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85337BCCF51313345AF7A696 /* DashboardView.swift */; };
+		C768109D16DE01F65E5DE669 /* DripWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A6424F6DE4EEFCE11DCF3DF8 /* DripWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D19462AA9B6588EFF289089C /* WateringLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C6B0561090C8B434DD5525 /* WateringLiveActivity.swift */; };
+		D622FDDF612CE682126D95A2 /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F27A221A05980837E8AB56 /* LiveActivityManager.swift */; };
+		EC31AAD25482947BECCF97E2 /* DripClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7919B27FC41F363D0E958B /* DripClient.swift */; };
+		FF6C26AB35C1F47FC8737919 /* ScheduleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DE8B878B91B3CC03CDF87C /* ScheduleRow.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F0D2D3D842417B4A5CDAD5DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4DB9F1091A61C2328AD2612D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 75E39EEBB458065016E4EDF8;
+			remoteInfo = DripWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B2EBAF6E4C3F55252557C97D /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C768109D16DE01F65E5DE669 /* DripWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0289AD2C0614ACF35F78A864 /* ZoneCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneCard.swift; sourceTree = "<group>"; };
+		0B1D296228079FC453E1623B /* WaterSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterSheet.swift; sourceTree = "<group>"; };
+		2338BC1F58B8B34D745CC542 /* EventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
+		23C508D070B1FE1D2E104BB2 /* ScheduleEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditor.swift; sourceTree = "<group>"; };
+		39C6B0561090C8B434DD5525 /* WateringLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WateringLiveActivity.swift; sourceTree = "<group>"; };
+		502613423C5AD1B5651DF612 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		50B395B12A22FE2708DEF105 /* ConnectionBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionBadge.swift; sourceTree = "<group>"; };
+		5510D22C7F281E7CA10F4D10 /* CountdownRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownRing.swift; sourceTree = "<group>"; };
+		56042FDFAD5314812279BA20 /* Drip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Drip.entitlements; sourceTree = "<group>"; };
+		5AE5414E04F6223DE3E6695F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5B7919B27FC41F363D0E958B /* DripClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DripClient.swift; sourceTree = "<group>"; };
+		5CA0403FAF60B98F22E7F28C /* WeatherCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCard.swift; sourceTree = "<group>"; };
+		5D79849076ABDC8F4FA53F6B /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		622080BEBC4D8D13C531F919 /* Drip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		69DE8B878B91B3CC03CDF87C /* ScheduleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleRow.swift; sourceTree = "<group>"; };
+		77A0D4AF5F5DC11561C89FCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		85337BCCF51313345AF7A696 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		9D9A91087D07C532BC46E123 /* LogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsView.swift; sourceTree = "<group>"; };
+		A6424F6DE4EEFCE11DCF3DF8 /* DripWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DripWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		B83B094CDD0719F19B4E8D14 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BBAF2DE6967BC0FB3ECD3FF1 /* DripWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DripWidget.entitlements; sourceTree = "<group>"; };
+		BBB05EE693AD474FBB293224 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		BE22BA2A03D77E0480F71C60 /* DripWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DripWidget.swift; sourceTree = "<group>"; };
+		C02538880EAE255122FA2420 /* WateringAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WateringAttributes.swift; sourceTree = "<group>"; };
+		CAB60B3275F479EC1481D856 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		D68E3FA62AF89C9C835F6282 /* SchedulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulesView.swift; sourceTree = "<group>"; };
+		DB615FE92967270FB282EC8F /* DripApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DripApp.swift; sourceTree = "<group>"; };
+		F269E5A0EA1F76A2093EED3A /* RefreshManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshManager.swift; sourceTree = "<group>"; };
+		F2F27A221A05980837E8AB56 /* LiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManager.swift; sourceTree = "<group>"; };
+		F65D5117D6642A229F924449 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		2DF3C936D87E97767622C3F2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BBB05EE693AD474FBB293224 /* RootView.swift */,
+				D0DAB04941AE50D1C7D8EDCC /* Dashboard */,
+				DF39BCF92E104E376E5DB7C3 /* Logs */,
+				4F764DB4343E0D8247B37994 /* Schedules */,
+				9265D48FFF1278D9DC1E72E8 /* Settings */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3AA722D1C8941A334982E11F = {
+			isa = PBXGroup;
+			children = (
+				9252F47F95AFFB1101CFF82E /* Drip */,
+				60849C3B4A764D3A0A81D870 /* DripWidget */,
+				7D33A3D1CCF8FA7F986C730E /* Shared */,
+				64BEEEAB49916E836B14B1A3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4F764DB4343E0D8247B37994 /* Schedules */ = {
+			isa = PBXGroup;
+			children = (
+				23C508D070B1FE1D2E104BB2 /* ScheduleEditor.swift */,
+				69DE8B878B91B3CC03CDF87C /* ScheduleRow.swift */,
+				D68E3FA62AF89C9C835F6282 /* SchedulesView.swift */,
+			);
+			path = Schedules;
+			sourceTree = "<group>";
+		};
+		60849C3B4A764D3A0A81D870 /* DripWidget */ = {
+			isa = PBXGroup;
+			children = (
+				BBAF2DE6967BC0FB3ECD3FF1 /* DripWidget.entitlements */,
+				BE22BA2A03D77E0480F71C60 /* DripWidget.swift */,
+				77A0D4AF5F5DC11561C89FCC /* Info.plist */,
+				39C6B0561090C8B434DD5525 /* WateringLiveActivity.swift */,
+			);
+			path = DripWidget;
+			sourceTree = "<group>";
+		};
+		64BEEEAB49916E836B14B1A3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				622080BEBC4D8D13C531F919 /* Drip.app */,
+				A6424F6DE4EEFCE11DCF3DF8 /* DripWidget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7D33A3D1CCF8FA7F986C730E /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				CAB60B3275F479EC1481D856 /* AppConfig.swift */,
+				5B7919B27FC41F363D0E958B /* DripClient.swift */,
+				5D79849076ABDC8F4FA53F6B /* Keychain.swift */,
+				502613423C5AD1B5651DF612 /* Models.swift */,
+				C02538880EAE255122FA2420 /* WateringAttributes.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		9252F47F95AFFB1101CFF82E /* Drip */ = {
+			isa = PBXGroup;
+			children = (
+				F65D5117D6642A229F924449 /* Assets.xcassets */,
+				56042FDFAD5314812279BA20 /* Drip.entitlements */,
+				DB615FE92967270FB282EC8F /* DripApp.swift */,
+				5AE5414E04F6223DE3E6695F /* Info.plist */,
+				F2F27A221A05980837E8AB56 /* LiveActivityManager.swift */,
+				F269E5A0EA1F76A2093EED3A /* RefreshManager.swift */,
+				2DF3C936D87E97767622C3F2 /* Views */,
+			);
+			path = Drip;
+			sourceTree = "<group>";
+		};
+		9265D48FFF1278D9DC1E72E8 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B83B094CDD0719F19B4E8D14 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		D0DAB04941AE50D1C7D8EDCC /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				50B395B12A22FE2708DEF105 /* ConnectionBadge.swift */,
+				5510D22C7F281E7CA10F4D10 /* CountdownRing.swift */,
+				85337BCCF51313345AF7A696 /* DashboardView.swift */,
+				0B1D296228079FC453E1623B /* WaterSheet.swift */,
+				5CA0403FAF60B98F22E7F28C /* WeatherCard.swift */,
+				0289AD2C0614ACF35F78A864 /* ZoneCard.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		DF39BCF92E104E376E5DB7C3 /* Logs */ = {
+			isa = PBXGroup;
+			children = (
+				2338BC1F58B8B34D745CC542 /* EventRow.swift */,
+				9D9A91087D07C532BC46E123 /* LogsView.swift */,
+			);
+			path = Logs;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		75E39EEBB458065016E4EDF8 /* DripWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6451CB36C560A182DDA499F0 /* Build configuration list for PBXNativeTarget "DripWidget" */;
+			buildPhases = (
+				4B9D907F2CB3E38733F4C30A /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DripWidget;
+			packageProductDependencies = (
+			);
+			productName = DripWidget;
+			productReference = A6424F6DE4EEFCE11DCF3DF8 /* DripWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		F8D78B56D95F3229FF2637A8 /* Drip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 10702ABEAC5B5598762D021C /* Build configuration list for PBXNativeTarget "Drip" */;
+			buildPhases = (
+				029BDA662BFEAC10BC67E296 /* Sources */,
+				8A6D28522C7E507D2866B1B8 /* Resources */,
+				B2EBAF6E4C3F55252557C97D /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0711239003494FBCB95DD0F5 /* PBXTargetDependency */,
+			);
+			name = Drip;
+			packageProductDependencies = (
+			);
+			productName = Drip;
+			productReference = 622080BEBC4D8D13C531F919 /* Drip.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4DB9F1091A61C2328AD2612D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					75E39EEBB458065016E4EDF8 = {
+						ProvisioningStyle = Automatic;
+					};
+					F8D78B56D95F3229FF2637A8 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 5CAF511444293F0A01D26025 /* Build configuration list for PBXProject "Drip" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 3AA722D1C8941A334982E11F;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 64BEEEAB49916E836B14B1A3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F8D78B56D95F3229FF2637A8 /* Drip */,
+				75E39EEBB458065016E4EDF8 /* DripWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8A6D28522C7E507D2866B1B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B848B659BAF42BB88E252AD /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		029BDA662BFEAC10BC67E296 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91F2410298910E794C00D05B /* AppConfig.swift in Sources */,
+				59C019537068E57BB27BE024 /* ConnectionBadge.swift in Sources */,
+				B8B8819F1321A259E23ABDFD /* CountdownRing.swift in Sources */,
+				C729E6D2A28D20521E82806F /* DashboardView.swift in Sources */,
+				778C9BB4216A730C74913C5D /* DripApp.swift in Sources */,
+				EC31AAD25482947BECCF97E2 /* DripClient.swift in Sources */,
+				4C235EE9E4AB49BE42198832 /* EventRow.swift in Sources */,
+				6B867FF4FEC19743FD1AD893 /* Keychain.swift in Sources */,
+				D622FDDF612CE682126D95A2 /* LiveActivityManager.swift in Sources */,
+				806D90854DC4B431D133E33E /* LogsView.swift in Sources */,
+				C288FA1296A786D0AEEA4538 /* Models.swift in Sources */,
+				89DB9DD11A154520319E2F62 /* RefreshManager.swift in Sources */,
+				0F4C2481042FA65DEFB69EF8 /* RootView.swift in Sources */,
+				B6AC218DBA09D1A456F886CF /* ScheduleEditor.swift in Sources */,
+				FF6C26AB35C1F47FC8737919 /* ScheduleRow.swift in Sources */,
+				21773D56972F9EA0593ED31C /* SchedulesView.swift in Sources */,
+				B6E041D455EB4A2ADFBD7F4D /* SettingsView.swift in Sources */,
+				31319A47720DD848AE3BF845 /* WaterSheet.swift in Sources */,
+				8E7603357BF87FB18AB4CAA3 /* WateringAttributes.swift in Sources */,
+				8E00D5E444D8653C0C67DA9C /* WeatherCard.swift in Sources */,
+				6B0B78303D9EA6A05C5F7565 /* ZoneCard.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B9D907F2CB3E38733F4C30A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A770CC11B995F97C0CA9CA4 /* AppConfig.swift in Sources */,
+				05A5A52E426DCC53A0226186 /* DripClient.swift in Sources */,
+				3B8D61C58E67036F8F2EB0BB /* DripWidget.swift in Sources */,
+				89AAF313432D0175B2E46AD5 /* Keychain.swift in Sources */,
+				1A395467C651A5601A4DFBAD /* Models.swift in Sources */,
+				307F4DBFFDDF99109F44F04E /* WateringAttributes.swift in Sources */,
+				D19462AA9B6588EFF289089C /* WateringLiveActivity.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0711239003494FBCB95DD0F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 75E39EEBB458065016E4EDF8 /* DripWidget */;
+			targetProxy = F0D2D3D842417B4A5CDAD5DC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2E37B07BCFB6BFAF0F74A0D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Drip/Drip.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 37J6F3P49B;
+				INFOPLIST_FILE = Drip/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.lucajoos.drip;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3B429E6D35B8D679D67620F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = DripWidget/DripWidget.entitlements;
+				DEVELOPMENT_TEAM = 37J6F3P49B;
+				INFOPLIST_FILE = DripWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.lucajoos.drip.widget;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		488EF0928ECFCBD83D815D6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Drip/Drip.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 37J6F3P49B;
+				INFOPLIST_FILE = Drip/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.lucajoos.drip;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		571A7C424530D2B1FD4F92F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = DripWidget/DripWidget.entitlements;
+				DEVELOPMENT_TEAM = 37J6F3P49B;
+				INFOPLIST_FILE = DripWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.lucajoos.drip.widget;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		63428D1ABDD8382356E39DD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		B463AD612408AFA1963B2463 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		10702ABEAC5B5598762D021C /* Build configuration list for PBXNativeTarget "Drip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E37B07BCFB6BFAF0F74A0D4 /* Debug */,
+				488EF0928ECFCBD83D815D6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5CAF511444293F0A01D26025 /* Build configuration list for PBXProject "Drip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63428D1ABDD8382356E39DD4 /* Debug */,
+				B463AD612408AFA1963B2463 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		6451CB36C560A182DDA499F0 /* Build configuration list for PBXNativeTarget "DripWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				571A7C424530D2B1FD4F92F1 /* Debug */,
+				3B429E6D35B8D679D67620F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4DB9F1091A61C2328AD2612D /* Project object */;
+}

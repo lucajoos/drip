@@ -1,0 +1,62 @@
+name: Drip
+options:
+  bundleIdPrefix: de.lucajoos
+  deploymentTarget:
+    iOS: "26.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    CODE_SIGN_STYLE: Automatic
+    CURRENT_PROJECT_VERSION: 1
+    MARKETING_VERSION: "1.0"
+targets:
+  Drip:
+    type: application
+    platform: iOS
+    sources:
+      - path: Drip
+      - path: Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: de.lucajoos.drip
+        CODE_SIGN_ENTITLEMENTS: Drip/Drip.entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+    info:
+      path: Drip/Info.plist
+      properties:
+        UILaunchScreen: {}
+        CFBundleDisplayName: Drip
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: true
+        NSLocalNetworkUsageDescription: Drip verbindet sich mit dem Bewässerungscontroller in deinem WLAN.
+        NSBonjourServices:
+          - _http._tcp
+        NSSupportsLiveActivities: true
+        BGTaskSchedulerPermittedIdentifiers:
+          - de.lucajoos.drip.refresh
+        UIBackgroundModes: [fetch]
+    dependencies:
+      - target: DripWidget
+        embed: true
+  DripWidget:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: DripWidget
+      - path: Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: de.lucajoos.drip.widget
+        CODE_SIGN_ENTITLEMENTS: DripWidget/DripWidget.entitlements
+    info:
+      path: DripWidget/Info.plist
+      properties:
+        CFBundleDisplayName: Drip Widget
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: true
+        NSLocalNetworkUsageDescription: Drip verbindet sich mit dem Bewässerungscontroller in deinem WLAN.
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
