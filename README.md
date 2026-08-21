@@ -218,10 +218,11 @@ Nur **eine** `type:`-Zeile, wenn du über **Karte hinzufügen** gehst. Den ganze
 Block inkl. `views:` nur in der **Rohkonfiguration des Dashboards** einfügen
 (siehe [`homeassistant/lovelace-drip.yaml`](homeassistant/lovelace-drip.yaml)).
 
-Die Integration registriert die Karte als Lovelace-Resource
-(`/drip/static/drip-schedules-card.js`). Nach einem Update: HA neu starten,
-dann Browser hart neu laden. Unter Einstellungen → Dashboards → Ressourcen
-sollte der Eintrag stehen.
+Die Integration kopiert die Karte nach `/config/www/drip/` und lädt sie als
+`/local/drip/drip-schedules-card.js`. Nach dem Update: HA neu starten, Browser
+hart neu laden. Falls die Karte weiter „does not exist“ zeigt: Einstellungen →
+Dashboards → Ressourcen → Hinzufügen, URL `/local/drip/drip-schedules-card.js`,
+Typ JavaScript-Modul.
 
 API-Client-Tests (ohne Home Assistant): `pip install -r requirements-dev.txt && pytest`
 

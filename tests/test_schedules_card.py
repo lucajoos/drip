@@ -23,7 +23,7 @@ def test_card_file_defines_element_and_services() -> None:
 def test_frontend_registers_card_js() -> None:
     text = FRONTEND.read_text(encoding="utf-8")
     assert "drip-schedules-card.js" in text
-    assert "async_register_static_paths" in text
+    assert "/local/drip/" in text
     assert "async_create_item" in text
     assert "ResourceStorageCollection" in text
 

@@ -1,7 +1,4 @@
-(function () {
-  "use strict";
-
-  const MAX_SCHEDULES = 16;
+const MAX_SCHEDULES = 16;
   const WEEKDAYS = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
   const ZONES = ["herbs", "beds"];
 
@@ -861,4 +858,3 @@
       preview: false,
     });
   }
-})();

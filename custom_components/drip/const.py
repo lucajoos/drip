@@ -4,7 +4,7 @@ from datetime import timedelta
 from typing import Final
 
 DOMAIN: Final = "drip"
-VERSION: Final = "1.1.1"
+VERSION: Final = "1.1.2"
 
 DEFAULT_HOST: Final = "drip.local"
 DEFAULT_PORT: Final = 80

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import shutil
 from pathlib import Path
 
 from homeassistant.components.frontend import add_extra_js_url
@@ -13,77 +14,61 @@ from .const import DOMAIN, VERSION
 _LOGGER = logging.getLogger(__name__)
 
 WWW_PATH = Path(__file__).parent / "www"
-STATIC_URL = f"/{DOMAIN}/static"
 CARD_FILENAME = "drip-schedules-card.js"
 DATA_FRONTEND = f"{DOMAIN}_frontend"
 
 
 def card_url() -> str:
-    """Versioned URL so browsers pick up card updates."""
-    return f"{STATIC_URL}/{CARD_FILENAME}?v={VERSION}"
+    """HA always serves /config/www as /local/."""
+    return f"/local/drip/{CARD_FILENAME}?v={VERSION}"
 
 
 async def async_register_frontend(hass: HomeAssistant) -> None:
-    """Serve the card JS and register it as a Lovelace module resource.
+    """Install the card under /local/drip and register it as a JS module.
 
-    On HA 2026+, add_extra_js_url alone does not load custom cards on
-    storage-mode dashboards. The element never defines and Lovelace shows
-    "Configuration error". Persistent dashboard resources do.
+    Custom element "does not exist" means the browser never ran the card JS.
+    Serving via /drip/static + extra_js_url is unreliable on HA 2026 storage
+    dashboards. Copying to config/www and loading /local/... is.
     """
     if hass.data.get(DATA_FRONTEND):
         return
+
+    url = await hass.async_add_executor_job(_install_local_copy, hass)
+    add_extra_js_url(hass, url)
+    await _async_register_lovelace_resource(hass, url)
     hass.data[DATA_FRONTEND] = True
+    _LOGGER.info("Drip Lovelace card available at %s", url)
 
-    await _async_register_static_path(hass)
-    url = card_url()
 
+def _install_local_copy(hass: HomeAssistant) -> str:
+    dest_dir = Path(hass.config.path("www")) / "drip"
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    src = WWW_PATH / CARD_FILENAME
+    dest = dest_dir / CARD_FILENAME
+    shutil.copyfile(src, dest)
+    return card_url()
+
+
+async def _async_register_lovelace_resource(hass: HomeAssistant, url: str) -> None:
     lovelace = hass.data.get("lovelace")
     resources = getattr(lovelace, "resources", None) if lovelace is not None else None
-
     try:
         from homeassistant.components.lovelace.resources import ResourceStorageCollection
     except ImportError:
-        ResourceStorageCollection = None  # type: ignore[misc, assignment]
-
-    if ResourceStorageCollection is not None and isinstance(
-        resources, ResourceStorageCollection
-    ):
-        await resources.async_get_info()
-        existing = [
-            item
-            for item in resources.async_items()
-            if CARD_FILENAME in str(item.get("url", ""))
-        ]
-        if existing:
-            current = existing[0]
-            if current.get("url") != url:
-                await resources.async_update_item(
-                    current["id"], {"res_type": "module", "url": url}
-                )
-                _LOGGER.info("Updated drip Lovelace card resource to %s", url)
-        else:
-            await resources.async_create_item({"res_type": "module", "url": url})
-            _LOGGER.info("Registered drip Lovelace card resource %s", url)
+        return
+    if not isinstance(resources, ResourceStorageCollection):
         return
 
-    add_extra_js_url(hass, url)
-    _LOGGER.debug("Registered drip card via extra JS URL %s", url)
-
-
-async def _async_register_static_path(hass: HomeAssistant) -> None:
-    try:
-        from homeassistant.components.http import StaticPathConfig
-
-        await hass.http.async_register_static_paths(
-            [
-                StaticPathConfig(
-                    url_path=STATIC_URL,
-                    path=str(WWW_PATH),
-                    cache_headers=False,
-                )
-            ]
-        )
-    except RuntimeError:
-        _LOGGER.debug("Static path %s already registered", STATIC_URL)
-    except (ImportError, AttributeError):
-        hass.http.register_static_path(STATIC_URL, str(WWW_PATH), cache_headers=False)
+    # Load from disk first so create_item cannot wipe existing resources.
+    await resources.async_get_info()
+    existing = [
+        item
+        for item in resources.async_items()
+        if CARD_FILENAME in str(item.get("url", ""))
+    ]
+    payload = {"res_type": "module", "url": url}
+    if existing:
+        if existing[0].get("url") != url:
+            await resources.async_update_item(existing[0]["id"], payload)
+        return
+    await resources.async_create_item(payload)
