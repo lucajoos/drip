@@ -203,13 +203,17 @@ jede Minute, Wetter alle 5 min; nach einem Service-Call sofort.
 
 ### Gießpläne
 
-Anlegen, Ändern, Löschen und Ein-/Ausschalten über Developer Tools → Aktionen
-(oder Scripts / Dashboard-Buttons):
+Die Integration lädt die Lovelace-Karte `custom:drip-schedules-card` automatisch
+(kein extra Resource-Eintrag). Damit lassen sich Pläne direkt im Dashboard
+anlegen, bearbeiten, ein-/ausschalten und löschen — analog zur iOS-App.
 
-- `drip.create_schedule`
-- `drip.update_schedule` (kompletter Body, wie der ESP-PUT)
-- `drip.delete_schedule`
-- `drip.set_schedule_enabled`
+```yaml
+type: custom:drip-schedules-card
+entity: sensor.drip_schedules
+```
+
+Die Karte steht auch unter **Karte hinzufügen** bereit. Services
+(`drip.create_schedule` usw.) bleiben für Automationen nutzbar.
 
 Beispiel-Dashboard: [`homeassistant/lovelace-drip.yaml`](homeassistant/lovelace-drip.yaml).
 

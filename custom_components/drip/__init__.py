@@ -7,6 +7,7 @@ from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
 
 from .coordinator import DripCoordinator
+from .frontend import async_register_frontend
 from .services import async_setup_services
 
 PLATFORMS: list[Platform] = [
@@ -17,8 +18,15 @@ PLATFORMS: list[Platform] = [
 ]
 
 
+async def async_setup(hass: HomeAssistant, config: dict) -> bool:
+    """Set up the Drip integration (frontend card)."""
+    await async_register_frontend(hass)
+    return True
+
+
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up Drip from a config entry."""
+    await async_register_frontend(hass)
     coordinator = DripCoordinator(hass, entry)
     await coordinator.async_config_entry_first_refresh()
     entry.runtime_data = coordinator

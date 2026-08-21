@@ -27,19 +27,8 @@ views:
           - entity: sensor.drip_beds_next_run
           - entity: sensor.drip_beds_last_run
 
-      - type: markdown
-        title: Gießpläne
-        content: |
-          {{ states('sensor.drip_schedules') }} Pläne
-
-          {% for s in state_attr('sensor.drip_schedules', 'schedules') or [] %}
-          - **{{ s.id }}** {{ s.zone }} {{ s.time }} · {{ s.rhythm }} · {{ s.durationMin }} min
-            {% if s.enabled %}aktiv{% else %}aus{% endif %}
-            {% if s.rainSkip and s.rainSkip.enabled %}· Regen-Skip {{ s.rainSkip.thresholdMm }} mm{% endif %}
-            {% if s.nextRun %}· nächster Lauf {{ s.nextRun }}{% endif %}
-          {% else %}
-          Noch keine Pläne. Anlegen über Developer Tools → Actions → `drip.create_schedule`.
-          {% endfor %}
+      - type: custom:drip-schedules-card
+        entity: sensor.drip_schedules
 
       - type: entities
         title: Wetter & Diagnostik
@@ -51,36 +40,4 @@ views:
           - entity: sensor.drip_time_source
           - entity: sensor.drip_uptime
 
-# Service examples (Developer Tools → Actions):
-#
-# drip.create_schedule
-#   zone: herbs
-#   time: "05:00"
-#   rhythm: daily
-#   duration_min: 10
-#   rain_skip_enabled: true
-#   rain_skip_threshold_mm: 5
-#
-# drip.create_schedule
-#   zone: beds
-#   time: "19:00"
-#   rhythm: every_n_days
-#   n: 2
-#   duration_min: 20
-#
-# drip.create_schedule
-#   zone: beds
-#   time: "06:30"
-#   rhythm: weekdays
-#   weekdays:
-#     - mon
-#     - wed
-#     - fri
-#   duration_min: 15
-#
-# drip.set_schedule_enabled
-#   schedule_id: 1
-#   enabled: false
-#
-# drip.delete_schedule
-#   schedule_id: 1
+# The schedules card is bundled with the integration (no extra Lovelace resource).
