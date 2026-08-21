@@ -1,4 +1,7 @@
-const MAX_SCHEDULES = 16;
+(function () {
+  "use strict";
+
+  const MAX_SCHEDULES = 16;
   const WEEKDAYS = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
   const ZONES = ["herbs", "beds"];
 
@@ -848,6 +851,9 @@ const MAX_SCHEDULES = 16;
   if (!customElements.get("drip-schedules-card")) {
     customElements.define("drip-schedules-card", DripSchedulesCard);
   }
+  if (!customElements.get("drip-schedule-card")) {
+    customElements.define("drip-schedule-card", DripSchedulesCard);
+  }
 
   window.customCards = window.customCards || [];
   if (!window.customCards.some((c) => c.type === "drip-schedules-card")) {
@@ -858,3 +864,5 @@ const MAX_SCHEDULES = 16;
       preview: false,
     });
   }
+  console.info("drip-schedules-card defined");
+})();
