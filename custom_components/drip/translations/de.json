@@ -1,0 +1,112 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Drip",
+        "description": "Verbindung zum Drip-Controller im LAN. drip.local, falls mDNS funktioniert, sonst die reservierte IP. API-Key ist API_KEY aus secrets.h.",
+        "data": {
+          "host": "Host",
+          "port": "Port",
+          "api_key": "API-Key"
+        },
+        "data_description": {
+          "host": "Hostname oder IP (drip.local oder DHCP-Reservation)",
+          "port": "HTTP-Port (Standard 80)",
+          "api_key": "X-API-Key aus der Firmware (secrets.h)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Controller nicht erreichbar. Host, Port und LAN prüfen.",
+      "invalid_auth": "API-Key wurde abgelehnt (401).",
+      "unknown": "Unerwarteter Fehler"
+    },
+    "abort": {
+      "already_configured": "Dieser Controller ist bereits eingerichtet"
+    }
+  },
+  "entity": {
+    "switch": {
+      "herbs": { "name": "Kräuter" },
+      "beds": { "name": "Beete" }
+    },
+    "number": {
+      "herbs_duration": { "name": "Gießdauer Kräuter" },
+      "beds_duration": { "name": "Gießdauer Beete" }
+    },
+    "sensor": {
+      "herbs_remaining": { "name": "Restzeit Kräuter" },
+      "beds_remaining": { "name": "Restzeit Beete" },
+      "herbs_next_run": { "name": "Nächster Lauf Kräuter" },
+      "beds_next_run": { "name": "Nächster Lauf Beete" },
+      "herbs_last_run": { "name": "Letzter Lauf Kräuter" },
+      "beds_last_run": { "name": "Letzter Lauf Beete" },
+      "herbs_last_duration": { "name": "Letzte Dauer Kräuter" },
+      "beds_last_duration": { "name": "Letzte Dauer Beete" },
+      "herbs_cause": { "name": "Ursache Kräuter" },
+      "beds_cause": { "name": "Ursache Beete" },
+      "rssi": { "name": "WLAN-Signal" },
+      "uptime": { "name": "Laufzeit" },
+      "free_heap": { "name": "Freier Heap" },
+      "time_source": { "name": "Zeitquelle" },
+      "schedules": { "name": "Gießpläne" },
+      "precip_past_24h": { "name": "Regen letzte 24 h" },
+      "precip_next_12h": { "name": "Regen nächste 12 h" }
+    },
+    "binary_sensor": {
+      "rtc": { "name": "RTC" }
+    }
+  },
+  "services": {
+    "create_schedule": {
+      "name": "Gießplan anlegen",
+      "description": "Legt einen Gießplan auf dem Controller an (max. 16).",
+      "fields": {
+        "zone": { "name": "Zone", "description": "herbs oder beds" },
+        "time": { "name": "Uhrzeit", "description": "Lokalzeit (Europe/Berlin), HH:MM" },
+        "rhythm": { "name": "Rhythmus", "description": "daily, every_n_days oder weekdays" },
+        "n": { "name": "Alle n Tage", "description": "Pflicht bei every_n_days (1–30)" },
+        "weekdays": { "name": "Wochentage", "description": "Pflicht bei weekdays (sun–sat)" },
+        "duration_min": { "name": "Dauer", "description": "Minuten (1–45)" },
+        "enabled": { "name": "Aktiv", "description": "Ob der Plan feuern darf" },
+        "rain_skip_enabled": { "name": "Regen-Skip", "description": "Überspringen, wenn Niederschlag über dem Schwellwert liegt" },
+        "rain_skip_threshold_mm": { "name": "Regen-Schwellwert", "description": "letzte 24 h + nächste 12 h, Millimeter" },
+        "entry_id": { "name": "Config-Entry-ID", "description": "Nur nötig, wenn mehrere Drip-Geräte eingerichtet sind" }
+      }
+    },
+    "update_schedule": {
+      "name": "Gießplan ändern",
+      "description": "Ersetzt einen Plan. Der ESP-PUT erwartet denselben vollständigen Body wie beim Anlegen.",
+      "fields": {
+        "schedule_id": { "name": "Plan-ID", "description": "Numerische id aus sensor.drip_schedules" },
+        "zone": { "name": "Zone", "description": "herbs oder beds" },
+        "time": { "name": "Uhrzeit", "description": "Lokalzeit (Europe/Berlin), HH:MM" },
+        "rhythm": { "name": "Rhythmus", "description": "daily, every_n_days oder weekdays" },
+        "n": { "name": "Alle n Tage", "description": "Pflicht bei every_n_days (1–30)" },
+        "weekdays": { "name": "Wochentage", "description": "Pflicht bei weekdays (sun–sat)" },
+        "duration_min": { "name": "Dauer", "description": "Minuten (1–45)" },
+        "enabled": { "name": "Aktiv", "description": "Ob der Plan feuern darf" },
+        "rain_skip_enabled": { "name": "Regen-Skip", "description": "Überspringen, wenn Niederschlag über dem Schwellwert liegt" },
+        "rain_skip_threshold_mm": { "name": "Regen-Schwellwert", "description": "letzte 24 h + nächste 12 h, Millimeter" },
+        "entry_id": { "name": "Config-Entry-ID", "description": "Nur nötig, wenn mehrere Drip-Geräte eingerichtet sind" }
+      }
+    },
+    "delete_schedule": {
+      "name": "Gießplan löschen",
+      "description": "Löscht einen Plan anhand der ID.",
+      "fields": {
+        "schedule_id": { "name": "Plan-ID", "description": "Numerische id aus sensor.drip_schedules" },
+        "entry_id": { "name": "Config-Entry-ID", "description": "Nur nötig, wenn mehrere Drip-Geräte eingerichtet sind" }
+      }
+    },
+    "set_schedule_enabled": {
+      "name": "Gießplan ein-/ausschalten",
+      "description": "Schaltet einen Plan um, ohne die übrigen Felder neu zu senden.",
+      "fields": {
+        "schedule_id": { "name": "Plan-ID", "description": "Numerische id aus sensor.drip_schedules" },
+        "enabled": { "name": "Aktiv", "description": "Ein oder aus" },
+        "entry_id": { "name": "Config-Entry-ID", "description": "Nur nötig, wenn mehrere Drip-Geräte eingerichtet sind" }
+      }
+    }
+  }
+}

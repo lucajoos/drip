@@ -2,7 +2,7 @@
 
 Firmware für ein 2-Zonen-Bewässerungssystem auf Basis eines LoLin NodeMCU V3 (ESP8266).
 Steuert zwei 12V-Magnetventile über 3V-Relais-Module, mit Gießplänen, Regen-Skip via
-Open-Meteo, Logs und REST-API (z.B. für eine iOS-Companion-App).
+Open-Meteo, Logs und REST-API (iOS-Companion-App und Home Assistant).
 
 - **Zone `herbs`**: Kräuter + Tomaten
 - **Zone `beds`**: Beete
@@ -17,6 +17,7 @@ Open-Meteo, Logs und REST-API (z.B. für eine iOS-Companion-App).
 - Zeit via NTP (Zeitzone Europe/Berlin inkl. Sommerzeit), DS3231 als Fallback --
   gießt auch bei Internet-Ausfall zuverlässig weiter
 - Failsafe: Ventile sind stromlos geschlossen; hartes Limit von 45 min pro Gießvorgang
+- Home Assistant Custom Integration (lokales Polling der REST-API)
 
 ## Hardware & Verdrahtung
 
@@ -165,6 +166,68 @@ curl -H "X-API-Key: $KEY" http://drip.local/api/weather
 
 Log-Events: `boot`, `water_start`, `water_end`, `skip_rain` (mit `precipMm`),
 `skip_busy`, `weather_error`, `error`, `schedule_created`.
+
+## Home Assistant
+
+Custom Integration unter [`custom_components/drip`](custom_components/drip): Home Assistant OS
+im gleichen LAN spricht HTTP gegen `http://drip.local` (oder eine feste IP) mit
+Header `X-API-Key`. Firmware bleibt unverändert.
+
+### Installation (HA OS)
+
+1. Ordner `custom_components/drip` nach `/config/custom_components/drip` kopieren
+   (Samba- oder SSH-Addon). Alternativ in HACS als Custom Repository
+   `lucajoos/drip` (Kategorie Integration) hinzufügen.
+2. Home Assistant neu starten.
+3. Einstellungen → Geräte & Dienste → Integration hinzufügen → **Drip**.
+4. Host `drip.local` (oder die IP aus dem seriellen Monitor / DHCP-Reservation),
+   Port `80`, API-Key aus `include/secrets.h` (`API_KEY`).
+
+`.local` hängt an mDNS. Wenn die Auflösung in HA OS hakt, am Router eine
+DHCP-Reservation setzen und die IP eintragen.
+
+### Entities
+
+Ein Device **Drip**, zwei Zonen analog zur iOS-App. Die Entity-IDs vergibt Home
+Assistant aus Gerätename + Anzeigename (deutsche UI):
+
+- `switch.drip_krauter` / `switch.drip_beete` — an startet `POST /api/water`
+  mit der Dauer aus dem Number-Entity; aus ruft `POST /api/stop`
+- Number-Entities für manuelle Gießdauer 1–45 min (nur in HA, Default 10)
+- Restzeit, nächster/letzter Lauf, Ursache, RSSI, Uptime, Zeitquelle, RTC, Regen
+- Gießpläne-Sensor `sensor.drip_giessplane` (Attribut `schedules`)
+
+Exakte IDs: Entwicklerwerkzeuge → Zustände, Filter `drip`. Alte IDs mit
+`aussen_drip_` nach Neuinstallation in den Entitäten aufräumen.
+
+Status wird alle 15 s gepollt, während eine Zone gießt alle 5 s. Schedules etwa
+jede Minute, Wetter alle 5 min; nach einem Service-Call sofort.
+
+### Gießpläne
+
+Die Integration lädt die Lovelace-Karte `custom:drip-schedules-card` und trägt
+sie in den Dashboard-Ressourcen ein. Damit lassen sich Pläne direkt im Dashboard
+anlegen, bearbeiten, ein-/ausschalten und löschen — analog zur iOS-App.
+
+```yaml
+type: custom:drip-schedules-card
+entity: sensor.drip_giessplane
+```
+
+Nur **eine** `type:`-Zeile, wenn du über **Karte hinzufügen** gehst. Den ganzen
+Block inkl. `views:` nur in der **Rohkonfiguration des Dashboards** einfügen
+(siehe [`homeassistant/lovelace-drip.yaml`](homeassistant/lovelace-drip.yaml)).
+
+Falls die Karte „Custom element doesn't exist“ zeigt: Die JS-Datei unter
+`/local/drip/drip-schedules-card.js` ist nur die Datei — Lovelace muss sie als
+**Ressource** laden. Einstellungen → Dashboards → Ressourcen → Hinzufügen:
+
+- URL: `/local/drip/drip-schedules-card.js`
+- Typ: **JavaScript-Modul**
+
+Browser danach hart neu laden. YAML: `type: custom:drip-schedules-card`.
+
+API-Client-Tests (ohne Home Assistant): `pip install -r requirements-dev.txt && pytest`
 
 ## Regen-Skip
 

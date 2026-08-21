@@ -1,0 +1,36 @@
+# Komplettes Dashboard: drei Punkte → Rohkonfiguration überschreiben.
+# Nicht in „Karte hinzufügen“ einfügen (da nur EIN type, ohne views).
+
+title: Drip
+views:
+  - title: Bewässerung
+    path: drip
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Kräuter
+            entities:
+              - entity: switch.drip_krauter
+              - entity: number.drip_giessdauer_krauter
+              - entity: sensor.drip_restzeit_krauter
+              - entity: sensor.drip_nachster_lauf_krauter
+
+          - type: entities
+            title: Beete
+            entities:
+              - entity: switch.drip_beete
+              - entity: number.drip_giessdauer_beete
+              - entity: sensor.drip_restzeit_beete
+              - entity: sensor.drip_nachster_lauf_beete
+
+          - type: custom:drip-schedules-card
+            entity: sensor.drip_giessplane
+
+          - type: entities
+            title: Wetter & Diagnostik
+            entities:
+              - entity: sensor.drip_regen_letzte_24_h
+              - entity: sensor.drip_regen_nachste_12_h
+              - entity: sensor.drip_wlan_signal
+              - entity: binary_sensor.drip_rtc

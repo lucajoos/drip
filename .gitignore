@@ -1,3 +1,7 @@
 .pio/
 .vscode/
 include/secrets.h
+__pycache__/
+.pytest_cache/
+.venv/
+*.pyc
