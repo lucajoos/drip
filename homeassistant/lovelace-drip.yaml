@@ -1,8 +1,9 @@
 # Drip – Lovelace example
 #
-# Paste into a dashboard (raw editor) after the integration is set up.
-# Entity IDs assume the device is named "Drip". If HA renamed them,
-# pick the matching entities from Developer Tools → States.
+# Home Assistant baut Entity-IDs aus Bereich + Gerätename + Anzeigename
+# (bei deutscher UI also z.B. Kräuter → krauter). Beispiel für Bereich
+# "Aussen" und Gerät "Drip". Eigene IDs: Entwicklerwerkzeuge → Zustände,
+# Suche nach "drip".
 
 title: Drip
 views:
@@ -12,32 +13,32 @@ views:
       - type: entities
         title: Kräuter
         entities:
-          - entity: switch.drip_herbs
-          - entity: number.drip_herbs_duration
-          - entity: sensor.drip_herbs_remaining
-          - entity: sensor.drip_herbs_next_run
-          - entity: sensor.drip_herbs_last_run
+          - entity: switch.aussen_drip_krauter
+          - entity: number.aussen_drip_giessdauer_krauter
+          - entity: sensor.aussen_drip_restzeit_krauter
+          - entity: sensor.aussen_drip_nachster_lauf_krauter
+          - entity: sensor.aussen_drip_letzter_lauf_krauter
 
       - type: entities
         title: Beete
         entities:
-          - entity: switch.drip_beds
-          - entity: number.drip_beds_duration
-          - entity: sensor.drip_beds_remaining
-          - entity: sensor.drip_beds_next_run
-          - entity: sensor.drip_beds_last_run
+          - entity: switch.aussen_drip_beete
+          - entity: number.aussen_drip_giessdauer_beete
+          - entity: sensor.aussen_drip_restzeit_beete
+          - entity: sensor.aussen_drip_nachster_lauf_beete
+          - entity: sensor.aussen_drip_letzter_lauf_beete
 
       - type: custom:drip-schedules-card
-        entity: sensor.drip_schedules
+        entity: sensor.drip_bewasserung_giessplane_2
 
       - type: entities
         title: Wetter & Diagnostik
         entities:
-          - entity: sensor.drip_precip_past_24h
-          - entity: sensor.drip_precip_next_12h
-          - entity: sensor.drip_rssi
-          - entity: binary_sensor.drip_rtc
-          - entity: sensor.drip_time_source
-          - entity: sensor.drip_uptime
+          - entity: sensor.aussen_drip_regen_letzte_24_h
+          - entity: sensor.aussen_drip_regen_nachste_12_h
+          - entity: sensor.aussen_drip_wlan_signal
+          - entity: binary_sensor.aussen_drip_rtc
+          - entity: sensor.aussen_drip_zeitquelle
+          - entity: sensor.aussen_drip_laufzeit
 
 # The schedules card is bundled with the integration (no extra Lovelace resource).
