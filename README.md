@@ -215,10 +215,10 @@ type: custom:drip-schedules-card
 entity: sensor.drip_bewasserung_giessplane_2
 ```
 
-Ohne `entity` sucht die Karte selbst nach einem Sensor mit Attribut `schedules`.
-Die Karte steht auch unter **Karte hinzufügen** bereit.
+Nur **eine** `type:`-Zeile pro Karte. Mehrere Karten entweder einzeln hinzufügen
+oder als `vertical-stack` (siehe [`homeassistant/lovelace-drip.yaml`](homeassistant/lovelace-drip.yaml)).
 
-Beispiel-Dashboard: [`homeassistant/lovelace-drip.yaml`](homeassistant/lovelace-drip.yaml).
+Ohne `entity` sucht die Karte selbst nach einem Sensor mit Attribut `schedules`.
 
 API-Client-Tests (ohne Home Assistant): `pip install -r requirements-dev.txt && pytest`
 
