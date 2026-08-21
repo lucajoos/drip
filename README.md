@@ -206,8 +206,8 @@ jede Minute, Wetter alle 5 min; nach einem Service-Call sofort.
 
 ### Gießpläne
 
-Die Integration lädt die Lovelace-Karte `custom:drip-schedules-card` automatisch
-(kein extra Resource-Eintrag). Damit lassen sich Pläne direkt im Dashboard
+Die Integration lädt die Lovelace-Karte `custom:drip-schedules-card` und trägt
+sie in den Dashboard-Ressourcen ein. Damit lassen sich Pläne direkt im Dashboard
 anlegen, bearbeiten, ein-/ausschalten und löschen — analog zur iOS-App.
 
 ```yaml
