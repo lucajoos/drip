@@ -1,44 +1,31 @@
-# Drip – Lovelace example
-#
-# Home Assistant baut Entity-IDs aus Bereich + Gerätename + Anzeigename
-# (bei deutscher UI also z.B. Kräuter → krauter). Beispiel für Bereich
-# "Aussen" und Gerät "Drip". Eigene IDs: Entwicklerwerkzeuge → Zustände,
-# Suche nach "drip".
+# Eine Karte (Karte hinzufügen → YAML). Nicht den ganzen Dashboard-Block
+# in eine einzelne Karte kleben — das erzeugt "duplicated mapping key".
 
-title: Drip
-views:
-  - title: Bewässerung
-    path: drip
-    cards:
-      - type: entities
-        title: Kräuter
-        entities:
-          - entity: switch.aussen_drip_krauter
-          - entity: number.aussen_drip_giessdauer_krauter
-          - entity: sensor.aussen_drip_restzeit_krauter
-          - entity: sensor.aussen_drip_nachster_lauf_krauter
-          - entity: sensor.aussen_drip_letzter_lauf_krauter
+type: vertical-stack
+cards:
+  - type: entities
+    title: Kräuter
+    entities:
+      - entity: switch.aussen_drip_krauter
+      - entity: number.aussen_drip_giessdauer_krauter
+      - entity: sensor.aussen_drip_restzeit_krauter
+      - entity: sensor.aussen_drip_nachster_lauf_krauter
 
-      - type: entities
-        title: Beete
-        entities:
-          - entity: switch.aussen_drip_beete
-          - entity: number.aussen_drip_giessdauer_beete
-          - entity: sensor.aussen_drip_restzeit_beete
-          - entity: sensor.aussen_drip_nachster_lauf_beete
-          - entity: sensor.aussen_drip_letzter_lauf_beete
+  - type: entities
+    title: Beete
+    entities:
+      - entity: switch.aussen_drip_beete
+      - entity: number.aussen_drip_giessdauer_beete
+      - entity: sensor.aussen_drip_restzeit_beete
+      - entity: sensor.aussen_drip_nachster_lauf_beete
 
-      - type: custom:drip-schedules-card
-        entity: sensor.drip_bewasserung_giessplane_2
+  - type: custom:drip-schedules-card
+    entity: sensor.drip_bewasserung_giessplane_2
 
-      - type: entities
-        title: Wetter & Diagnostik
-        entities:
-          - entity: sensor.aussen_drip_regen_letzte_24_h
-          - entity: sensor.aussen_drip_regen_nachste_12_h
-          - entity: sensor.aussen_drip_wlan_signal
-          - entity: binary_sensor.aussen_drip_rtc
-          - entity: sensor.aussen_drip_zeitquelle
-          - entity: sensor.aussen_drip_laufzeit
-
-# The schedules card is bundled with the integration (no extra Lovelace resource).
+  - type: entities
+    title: Wetter & Diagnostik
+    entities:
+      - entity: sensor.aussen_drip_regen_letzte_24_h
+      - entity: sensor.aussen_drip_regen_nachste_12_h
+      - entity: sensor.aussen_drip_wlan_signal
+      - entity: binary_sensor.aussen_drip_rtc
