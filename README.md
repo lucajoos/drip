@@ -215,8 +215,9 @@ type: custom:drip-schedules-card
 entity: sensor.drip_bewasserung_giessplane_2
 ```
 
-Nur **eine** `type:`-Zeile pro Karte. Mehrere Karten entweder einzeln hinzufügen
-oder als `vertical-stack` (siehe [`homeassistant/lovelace-drip.yaml`](homeassistant/lovelace-drip.yaml)).
+Nur **eine** `type:`-Zeile, wenn du über **Karte hinzufügen** gehst. Den ganzen
+Block inkl. `views:` nur in der **Rohkonfiguration des Dashboards** einfügen
+(siehe [`homeassistant/lovelace-drip.yaml`](homeassistant/lovelace-drip.yaml)).
 
 Ohne `entity` sucht die Karte selbst nach einem Sensor mit Attribut `schedules`.
 
