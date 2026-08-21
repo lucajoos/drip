@@ -1,0 +1,86 @@
+# Drip – Lovelace example
+#
+# Paste into a dashboard (raw editor) after the integration is set up.
+# Entity IDs assume the device is named "Drip". If HA renamed them,
+# pick the matching entities from Developer Tools → States.
+
+title: Drip
+views:
+  - title: Bewässerung
+    path: drip
+    cards:
+      - type: entities
+        title: Kräuter
+        entities:
+          - entity: switch.drip_herbs
+          - entity: number.drip_herbs_duration
+          - entity: sensor.drip_herbs_remaining
+          - entity: sensor.drip_herbs_next_run
+          - entity: sensor.drip_herbs_last_run
+
+      - type: entities
+        title: Beete
+        entities:
+          - entity: switch.drip_beds
+          - entity: number.drip_beds_duration
+          - entity: sensor.drip_beds_remaining
+          - entity: sensor.drip_beds_next_run
+          - entity: sensor.drip_beds_last_run
+
+      - type: markdown
+        title: Gießpläne
+        content: |
+          {{ states('sensor.drip_schedules') }} Pläne
+
+          {% for s in state_attr('sensor.drip_schedules', 'schedules') or [] %}
+          - **{{ s.id }}** {{ s.zone }} {{ s.time }} · {{ s.rhythm }} · {{ s.durationMin }} min
+            {% if s.enabled %}aktiv{% else %}aus{% endif %}
+            {% if s.rainSkip and s.rainSkip.enabled %}· Regen-Skip {{ s.rainSkip.thresholdMm }} mm{% endif %}
+            {% if s.nextRun %}· nächster Lauf {{ s.nextRun }}{% endif %}
+          {% else %}
+          Noch keine Pläne. Anlegen über Developer Tools → Actions → `drip.create_schedule`.
+          {% endfor %}
+
+      - type: entities
+        title: Wetter & Diagnostik
+        entities:
+          - entity: sensor.drip_precip_past_24h
+          - entity: sensor.drip_precip_next_12h
+          - entity: sensor.drip_rssi
+          - entity: binary_sensor.drip_rtc
+          - entity: sensor.drip_time_source
+          - entity: sensor.drip_uptime
+
+# Service examples (Developer Tools → Actions):
+#
+# drip.create_schedule
+#   zone: herbs
+#   time: "05:00"
+#   rhythm: daily
+#   duration_min: 10
+#   rain_skip_enabled: true
+#   rain_skip_threshold_mm: 5
+#
+# drip.create_schedule
+#   zone: beds
+#   time: "19:00"
+#   rhythm: every_n_days
+#   n: 2
+#   duration_min: 20
+#
+# drip.create_schedule
+#   zone: beds
+#   time: "06:30"
+#   rhythm: weekdays
+#   weekdays:
+#     - mon
+#     - wed
+#     - fri
+#   duration_min: 15
+#
+# drip.set_schedule_enabled
+#   schedule_id: 1
+#   enabled: false
+#
+# drip.delete_schedule
+#   schedule_id: 1

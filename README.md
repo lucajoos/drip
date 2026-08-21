@@ -2,7 +2,7 @@
 
 Firmware für ein 2-Zonen-Bewässerungssystem auf Basis eines LoLin NodeMCU V3 (ESP8266).
 Steuert zwei 12V-Magnetventile über 3V-Relais-Module, mit Gießplänen, Regen-Skip via
-Open-Meteo, Logs und REST-API (z.B. für eine iOS-Companion-App).
+Open-Meteo, Logs und REST-API (iOS-Companion-App und Home Assistant).
 
 - **Zone `herbs`**: Kräuter + Tomaten
 - **Zone `beds`**: Beete
@@ -17,6 +17,7 @@ Open-Meteo, Logs und REST-API (z.B. für eine iOS-Companion-App).
 - Zeit via NTP (Zeitzone Europe/Berlin inkl. Sommerzeit), DS3231 als Fallback --
   gießt auch bei Internet-Ausfall zuverlässig weiter
 - Failsafe: Ventile sind stromlos geschlossen; hartes Limit von 45 min pro Gießvorgang
+- Home Assistant Custom Integration (lokales Polling der REST-API)
 
 ## Hardware & Verdrahtung
 
@@ -165,6 +166,54 @@ curl -H "X-API-Key: $KEY" http://drip.local/api/weather
 
 Log-Events: `boot`, `water_start`, `water_end`, `skip_rain` (mit `precipMm`),
 `skip_busy`, `weather_error`, `error`, `schedule_created`.
+
+## Home Assistant
+
+Custom Integration unter [`custom_components/drip`](custom_components/drip): Home Assistant OS
+im gleichen LAN spricht HTTP gegen `http://drip.local` (oder eine feste IP) mit
+Header `X-API-Key`. Firmware bleibt unverändert.
+
+### Installation (HA OS)
+
+1. Ordner `custom_components/drip` nach `/config/custom_components/drip` kopieren
+   (Samba- oder SSH-Addon). Alternativ in HACS als Custom Repository
+   `lucajoos/drip` (Kategorie Integration) hinzufügen.
+2. Home Assistant neu starten.
+3. Einstellungen → Geräte & Dienste → Integration hinzufügen → **Drip**.
+4. Host `drip.local` (oder die IP aus dem seriellen Monitor / DHCP-Reservation),
+   Port `80`, API-Key aus `include/secrets.h` (`API_KEY`).
+
+`.local` hängt an mDNS. Wenn die Auflösung in HA OS hakt, am Router eine
+DHCP-Reservation setzen und die IP eintragen.
+
+### Entities
+
+Ein Device **Drip**, zwei Zonen analog zur iOS-App:
+
+- `switch.drip_herbs` / `switch.drip_beds` — an startet `POST /api/water` mit der
+  Dauer aus dem Number-Entity; aus ruft `POST /api/stop` auf
+- `number.drip_herbs_duration` / `number.drip_beds_duration` — manuelle Gießdauer
+  1–45 min (nur in HA gespeichert, Default 10)
+- Restzeit, nächster/letzter Lauf, Ursache, RSSI, Uptime, Zeitquelle, RTC,
+  Regen (letzte 24 h / nächste 12 h)
+- `sensor.drip_schedules` — Anzahl als State, volle Liste im Attribut `schedules`
+
+Status wird alle 15 s gepollt, während eine Zone gießt alle 5 s. Schedules etwa
+jede Minute, Wetter alle 5 min; nach einem Service-Call sofort.
+
+### Gießpläne
+
+Anlegen, Ändern, Löschen und Ein-/Ausschalten über Developer Tools → Aktionen
+(oder Scripts / Dashboard-Buttons):
+
+- `drip.create_schedule`
+- `drip.update_schedule` (kompletter Body, wie der ESP-PUT)
+- `drip.delete_schedule`
+- `drip.set_schedule_enabled`
+
+Beispiel-Dashboard: [`homeassistant/lovelace-drip.yaml`](homeassistant/lovelace-drip.yaml).
+
+API-Client-Tests (ohne Home Assistant): `pip install -r requirements-dev.txt && pytest`
 
 ## Regen-Skip
 

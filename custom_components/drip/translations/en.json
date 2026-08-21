@@ -1,0 +1,112 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Drip",
+        "description": "Connect to the drip controller on your LAN. Use drip.local if mDNS works, otherwise the reserved IP. API key is API_KEY from secrets.h.",
+        "data": {
+          "host": "Host",
+          "port": "Port",
+          "api_key": "API key"
+        },
+        "data_description": {
+          "host": "Hostname or IP (drip.local or a DHCP reservation)",
+          "port": "HTTP port (default 80)",
+          "api_key": "X-API-Key header value from the firmware secrets.h"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not reach the controller. Check host, port, and that Home Assistant is on the same network.",
+      "invalid_auth": "API key was rejected (401).",
+      "unknown": "Unexpected error"
+    },
+    "abort": {
+      "already_configured": "This controller is already configured"
+    }
+  },
+  "entity": {
+    "switch": {
+      "herbs": { "name": "Herbs" },
+      "beds": { "name": "Beds" }
+    },
+    "number": {
+      "herbs_duration": { "name": "Herbs duration" },
+      "beds_duration": { "name": "Beds duration" }
+    },
+    "sensor": {
+      "herbs_remaining": { "name": "Herbs remaining" },
+      "beds_remaining": { "name": "Beds remaining" },
+      "herbs_next_run": { "name": "Herbs next run" },
+      "beds_next_run": { "name": "Beds next run" },
+      "herbs_last_run": { "name": "Herbs last run" },
+      "beds_last_run": { "name": "Beds last run" },
+      "herbs_last_duration": { "name": "Herbs last duration" },
+      "beds_last_duration": { "name": "Beds last duration" },
+      "herbs_cause": { "name": "Herbs cause" },
+      "beds_cause": { "name": "Beds cause" },
+      "rssi": { "name": "Wi-Fi signal" },
+      "uptime": { "name": "Uptime" },
+      "free_heap": { "name": "Free heap" },
+      "time_source": { "name": "Time source" },
+      "schedules": { "name": "Schedules" },
+      "precip_past_24h": { "name": "Rain last 24 h" },
+      "precip_next_12h": { "name": "Rain next 12 h" }
+    },
+    "binary_sensor": {
+      "rtc": { "name": "RTC" }
+    }
+  },
+  "services": {
+    "create_schedule": {
+      "name": "Create schedule",
+      "description": "Create a watering schedule on the controller (max 16).",
+      "fields": {
+        "zone": { "name": "Zone", "description": "herbs or beds" },
+        "time": { "name": "Time", "description": "Local time (Europe/Berlin), HH:MM" },
+        "rhythm": { "name": "Rhythm", "description": "daily, every_n_days, or weekdays" },
+        "n": { "name": "Every n days", "description": "Required for every_n_days (1–30)" },
+        "weekdays": { "name": "Weekdays", "description": "Required for weekdays (sun–sat)" },
+        "duration_min": { "name": "Duration", "description": "Minutes (1–45)" },
+        "enabled": { "name": "Enabled", "description": "Whether the schedule may fire" },
+        "rain_skip_enabled": { "name": "Rain skip", "description": "Skip when precipitation is above the threshold" },
+        "rain_skip_threshold_mm": { "name": "Rain skip threshold", "description": "past 24 h + next 12 h, millimetres" },
+        "entry_id": { "name": "Config entry ID", "description": "Only needed if several Drip devices are configured" }
+      }
+    },
+    "update_schedule": {
+      "name": "Update schedule",
+      "description": "Replace a schedule. The ESP PUT expects a full body, same fields as create.",
+      "fields": {
+        "schedule_id": { "name": "Schedule ID", "description": "Numeric id from sensor.drip_schedules" },
+        "zone": { "name": "Zone", "description": "herbs or beds" },
+        "time": { "name": "Time", "description": "Local time (Europe/Berlin), HH:MM" },
+        "rhythm": { "name": "Rhythm", "description": "daily, every_n_days, or weekdays" },
+        "n": { "name": "Every n days", "description": "Required for every_n_days (1–30)" },
+        "weekdays": { "name": "Weekdays", "description": "Required for weekdays (sun–sat)" },
+        "duration_min": { "name": "Duration", "description": "Minutes (1–45)" },
+        "enabled": { "name": "Enabled", "description": "Whether the schedule may fire" },
+        "rain_skip_enabled": { "name": "Rain skip", "description": "Skip when precipitation is above the threshold" },
+        "rain_skip_threshold_mm": { "name": "Rain skip threshold", "description": "past 24 h + next 12 h, millimetres" },
+        "entry_id": { "name": "Config entry ID", "description": "Only needed if several Drip devices are configured" }
+      }
+    },
+    "delete_schedule": {
+      "name": "Delete schedule",
+      "description": "Delete a schedule by id.",
+      "fields": {
+        "schedule_id": { "name": "Schedule ID", "description": "Numeric id from sensor.drip_schedules" },
+        "entry_id": { "name": "Config entry ID", "description": "Only needed if several Drip devices are configured" }
+      }
+    },
+    "set_schedule_enabled": {
+      "name": "Enable or disable schedule",
+      "description": "Toggle a schedule without resending the rest of the fields.",
+      "fields": {
+        "schedule_id": { "name": "Schedule ID", "description": "Numeric id from sensor.drip_schedules" },
+        "enabled": { "name": "Enabled", "description": "On or off" },
+        "entry_id": { "name": "Config entry ID", "description": "Only needed if several Drip devices are configured" }
+      }
+    }
+  }
+}

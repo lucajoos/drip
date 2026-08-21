@@ -1,0 +1,182 @@
+create_schedule:
+  fields:
+    zone:
+      required: true
+      example: herbs
+      selector:
+        select:
+          options:
+            - herbs
+            - beds
+    time:
+      required: true
+      example: "05:00"
+      selector:
+        time:
+    rhythm:
+      example: daily
+      default: daily
+      selector:
+        select:
+          options:
+            - daily
+            - every_n_days
+            - weekdays
+    n:
+      example: 2
+      selector:
+        number:
+          min: 1
+          max: 30
+    weekdays:
+      example:
+        - mon
+        - wed
+        - fri
+      selector:
+        select:
+          multiple: true
+          options:
+            - sun
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+            - sat
+    duration_min:
+      required: true
+      example: 10
+      selector:
+        number:
+          min: 1
+          max: 45
+          unit_of_measurement: min
+    enabled:
+      example: true
+      default: true
+      selector:
+        boolean:
+    rain_skip_enabled:
+      example: true
+      selector:
+        boolean:
+    rain_skip_threshold_mm:
+      example: 5
+      selector:
+        number:
+          min: 0.1
+          max: 100
+          step: 0.5
+          unit_of_measurement: mm
+    entry_id:
+      selector:
+        text:
+
+update_schedule:
+  fields:
+    schedule_id:
+      required: true
+      example: 1
+      selector:
+        number:
+          min: 1
+          mode: box
+    zone:
+      required: true
+      example: herbs
+      selector:
+        select:
+          options:
+            - herbs
+            - beds
+    time:
+      required: true
+      example: "05:00"
+      selector:
+        time:
+    rhythm:
+      example: daily
+      default: daily
+      selector:
+        select:
+          options:
+            - daily
+            - every_n_days
+            - weekdays
+    n:
+      example: 2
+      selector:
+        number:
+          min: 1
+          max: 30
+    weekdays:
+      selector:
+        select:
+          multiple: true
+          options:
+            - sun
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+            - sat
+    duration_min:
+      required: true
+      example: 10
+      selector:
+        number:
+          min: 1
+          max: 45
+          unit_of_measurement: min
+    enabled:
+      example: true
+      default: true
+      selector:
+        boolean:
+    rain_skip_enabled:
+      selector:
+        boolean:
+    rain_skip_threshold_mm:
+      example: 5
+      selector:
+        number:
+          min: 0.1
+          max: 100
+          step: 0.5
+          unit_of_measurement: mm
+    entry_id:
+      selector:
+        text:
+
+delete_schedule:
+  fields:
+    schedule_id:
+      required: true
+      example: 1
+      selector:
+        number:
+          min: 1
+          mode: box
+    entry_id:
+      selector:
+        text:
+
+set_schedule_enabled:
+  fields:
+    schedule_id:
+      required: true
+      example: 1
+      selector:
+        number:
+          min: 1
+          mode: box
+    enabled:
+      required: true
+      example: true
+      selector:
+        boolean:
+    entry_id:
+      selector:
+        text:
