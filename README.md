@@ -219,7 +219,10 @@ Nur **eine** `type:`-Zeile, wenn du über **Karte hinzufügen** gehst. Den ganze
 Block inkl. `views:` nur in der **Rohkonfiguration des Dashboards** einfügen
 (siehe [`homeassistant/lovelace-drip.yaml`](homeassistant/lovelace-drip.yaml)).
 
-Ohne `entity` sucht die Karte selbst nach einem Sensor mit Attribut `schedules`.
+Die Integration registriert die Karte als Lovelace-Resource
+(`/drip/static/drip-schedules-card.js`). Nach einem Update: HA neu starten,
+dann Browser hart neu laden. Unter Einstellungen → Dashboards → Ressourcen
+sollte der Eintrag stehen.
 
 API-Client-Tests (ohne Home Assistant): `pip install -r requirements-dev.txt && pytest`
 

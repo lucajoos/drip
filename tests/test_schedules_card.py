@@ -22,14 +22,17 @@ def test_card_file_defines_element_and_services() -> None:
 
 def test_frontend_registers_card_js() -> None:
     text = FRONTEND.read_text(encoding="utf-8")
-    assert "add_extra_js_url" in text
     assert "drip-schedules-card.js" in text
     assert "async_register_static_paths" in text
+    assert "async_create_item" in text
+    assert "ResourceStorageCollection" in text
 
 
 def test_manifest_loads_frontend() -> None:
     import json
 
     data = json.loads(MANIFEST.read_text(encoding="utf-8"))
-    assert "frontend" in data.get("after_dependencies", [])
+    assert "frontend" in data.get("dependencies", [])
+    assert "http" in data.get("dependencies", [])
+    assert "lovelace" in data.get("dependencies", [])
     assert data["version"]
