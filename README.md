@@ -189,17 +189,16 @@ DHCP-Reservation setzen und die IP eintragen.
 ### Entities
 
 Ein Device **Drip**, zwei Zonen analog zur iOS-App. Die Entity-IDs vergibt Home
-Assistant aus Bereich + Gerätename + Anzeigename. Bei deutscher UI und Bereich
-„Aussen“ z.B.:
+Assistant aus Gerätename + Anzeigename (deutsche UI):
 
-- `switch.aussen_drip_krauter` / `switch.aussen_drip_beete` — an startet
-  `POST /api/water` mit der Dauer aus dem Number-Entity; aus ruft `POST /api/stop`
+- `switch.drip_krauter` / `switch.drip_beete` — an startet `POST /api/water`
+  mit der Dauer aus dem Number-Entity; aus ruft `POST /api/stop`
 - Number-Entities für manuelle Gießdauer 1–45 min (nur in HA, Default 10)
-- Restzeit, nächster/letzter Lauf, Ursache, RSSI, Uptime, Zeitquelle, RTC,
-  Regen (letzte 24 h / nächste 12 h), z.B. `sensor.aussen_drip_regen_letzte_24_h`
-- Gießpläne-Sensor (Attribut `schedules`), z.B. `sensor.drip_bewasserung_giessplane_2`
+- Restzeit, nächster/letzter Lauf, Ursache, RSSI, Uptime, Zeitquelle, RTC, Regen
+- Gießpläne-Sensor `sensor.drip_giessplane` (Attribut `schedules`)
 
-Exakte IDs: Entwicklerwerkzeuge → Zustände, Filter `drip`.
+Exakte IDs: Entwicklerwerkzeuge → Zustände, Filter `drip`. Alte IDs mit
+`aussen_drip_` nach Neuinstallation in den Entitäten aufräumen.
 
 Status wird alle 15 s gepollt, während eine Zone gießt alle 5 s. Schedules etwa
 jede Minute, Wetter alle 5 min; nach einem Service-Call sofort.
@@ -212,7 +211,7 @@ anlegen, bearbeiten, ein-/ausschalten und löschen — analog zur iOS-App.
 
 ```yaml
 type: custom:drip-schedules-card
-entity: sensor.drip_bewasserung_giessplane_2
+entity: sensor.drip_giessplane
 ```
 
 Nur **eine** `type:`-Zeile, wenn du über **Karte hinzufügen** gehst. Den ganzen

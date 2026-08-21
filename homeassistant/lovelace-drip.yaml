@@ -11,26 +11,26 @@ views:
           - type: entities
             title: Kräuter
             entities:
-              - entity: switch.aussen_drip_krauter
-              - entity: number.aussen_drip_giessdauer_krauter
-              - entity: sensor.aussen_drip_restzeit_krauter
-              - entity: sensor.aussen_drip_nachster_lauf_krauter
+              - entity: switch.drip_krauter
+              - entity: number.drip_giessdauer_krauter
+              - entity: sensor.drip_restzeit_krauter
+              - entity: sensor.drip_nachster_lauf_krauter
 
           - type: entities
             title: Beete
             entities:
-              - entity: switch.aussen_drip_beete
-              - entity: number.aussen_drip_giessdauer_beete
-              - entity: sensor.aussen_drip_restzeit_beete
-              - entity: sensor.aussen_drip_nachster_lauf_beete
+              - entity: switch.drip_beete
+              - entity: number.drip_giessdauer_beete
+              - entity: sensor.drip_restzeit_beete
+              - entity: sensor.drip_nachster_lauf_beete
 
           - type: custom:drip-schedules-card
-            entity: sensor.drip_bewasserung_giessplane_2
+            entity: sensor.drip_giessplane
 
           - type: entities
             title: Wetter & Diagnostik
             entities:
-              - entity: sensor.aussen_drip_regen_letzte_24_h
-              - entity: sensor.aussen_drip_regen_nachste_12_h
-              - entity: sensor.aussen_drip_wlan_signal
-              - entity: binary_sensor.aussen_drip_rtc
+              - entity: sensor.drip_regen_letzte_24_h
+              - entity: sensor.drip_regen_nachste_12_h
+              - entity: sensor.drip_wlan_signal
+              - entity: binary_sensor.drip_rtc
